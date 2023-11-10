@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAdverts, fetchAllAdverts } from 'redux/operations';
 import {
@@ -23,7 +23,7 @@ const Catalog = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [stopper, setStopper] = useState(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (page !== 1 && !stopper) {
       window.scrollBy({
         top: 260 * 2,
