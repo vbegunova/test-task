@@ -8,7 +8,6 @@ export const Container = styled.div`
 export const CatalogContainer = styled.ul`
   padding: 0;
   margin: 0;
-  width: 1184px;
   display: flex;
   flex-direction: row;
   gap: 29px;

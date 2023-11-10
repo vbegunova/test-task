@@ -1,9 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchAdverts,
-  fetchAllAdverts,
-} from 'redux/operations';
+import { fetchAdverts, fetchAllAdverts } from 'redux/operations';
 import {
   selectAdverts,
   selectError,
@@ -24,15 +21,16 @@ const Catalog = () => {
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [stopper, setStopper] = useState(true);
 
-  useLayoutEffect(() => {
-    if (page !== 1) {
+  useEffect(() => {
+    if (page !== 1 && !stopper) {
       window.scrollBy({
         top: 260 * 2,
         behavior: 'smooth',
       });
     }
-  }, [page]);
+  });
 
   useEffect(() => {
     dispatch(fetchAllAdverts());
@@ -44,14 +42,17 @@ const Catalog = () => {
 
   const handleClick = () => {
     setPage(prevPage => prevPage + 1);
+    setStopper(false);
   };
 
   const openModal = item => {
+    setStopper(true);
     setIsModalOpen(true);
     setSelectedItem(item);
   };
 
   const closeModal = () => {
+    setStopper(true);
     setIsModalOpen(false);
     setSelectedItem(null);
   };
