@@ -11,6 +11,7 @@ import { CatalogContainer, LoadMoreButton } from './Catalog.styled';
 import CatalogItem from 'components/CatalogItem/CatalogItem';
 import Loader from 'components/Loader/Loader';
 import Modal from 'components/Modal/Modal';
+import ModalContent from 'components/ModalContent/ModalContent';
 
 const Catalog = () => {
   const adverts = useSelector(selectAdverts);
@@ -74,7 +75,11 @@ const Catalog = () => {
       {!isLoading && quantity !== adverts.length && (
         <LoadMoreButton onClick={handleClick}>Load more</LoadMoreButton>
       )}
-      {isModalOpen && <Modal onClose={closeModal} advert={selectedItem} />}
+      {isModalOpen && (
+        <Modal onClose={closeModal}>
+          <ModalContent advert={selectedItem}/>
+        </Modal>
+      )}
     </>
   );
 };

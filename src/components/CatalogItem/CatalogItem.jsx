@@ -35,8 +35,6 @@ const CatalogItem = ({ advert, openModal }) => {
   const city = address.split(', ')[1];
   const country = address.split(', ')[2];
 
-  console.log(make, model, year, photoLink);
-
   return (
     <Item>
       <Image src={photoLink} alt={make} />
@@ -51,7 +49,9 @@ const CatalogItem = ({ advert, openModal }) => {
         {city} | {country} | {rentalCompany} | {type} | {model} | {id} |{' '}
         {cutFunc(accessories[0])}
       </CardDetails>
-      <LearnMoreButton onClick={() => (openModal(advert))}>Learn more</LearnMoreButton>
+      <LearnMoreButton onClick={() => openModal(advert)}>
+        Learn more
+      </LearnMoreButton>
     </Item>
   );
 };

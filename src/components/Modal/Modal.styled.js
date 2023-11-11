@@ -14,16 +14,23 @@ export const Overlay = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  position: relative;
   box-sizing: border-box;
   width: 541px;
   padding: 40px;
   background-color: white;
+  border-radius: 24px;
 `;
 
-export const Image = styled.img`
-  display: block;
-  width: 461px;
-  height: 248px;
-  object-fit: cover;
-  object-position: center;
+export const ButtonCross = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
