@@ -9,7 +9,6 @@ export const fetchAllAdverts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(END_POINT);
-      console.log(response.data.length);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -19,9 +18,11 @@ export const fetchAllAdverts = createAsyncThunk(
 
 export const fetchAdverts = createAsyncThunk(
   'adverts/fetchAdverts',
-  async (page, thunkAPI) => {
+  async ({ page, filterBrand }, thunkAPI) => {
     try {
-      const response = await axios.get(`${END_POINT}?page=${page}&limit=12`);
+      const response = await axios.get(
+        `${END_POINT}?page=${page}&limit=12&make=${filterBrand}`
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
