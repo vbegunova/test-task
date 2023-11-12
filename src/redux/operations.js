@@ -18,7 +18,7 @@ export const fetchAllAdverts = createAsyncThunk(
 
 export const fetchAdverts = createAsyncThunk(
   'adverts/fetchAdverts',
-  async ({ page, filterBrand }, thunkAPI) => {
+  async ({ page, filterBrand = '' }, thunkAPI) => {
     try {
       const response = await axios.get(
         `${END_POINT}?page=${page}&limit=12&make=${filterBrand}`
