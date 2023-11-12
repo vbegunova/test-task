@@ -5,7 +5,6 @@ import Modal from 'components/Modal/Modal';
 import ModalContent from 'components/ModalContent/ModalContent';
 import CatalogList from 'components/CatalogList/CatalogList';
 import { NoFavorites, StyledLink } from './Favorites.styled';
-import { Link } from 'react-router-dom';
 
 const Favorites = () => {
   const favoriteAdverts = useSelector(selectFavoritesAdverts);
