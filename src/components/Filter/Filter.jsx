@@ -2,10 +2,14 @@ import { useState } from 'react';
 import Select from 'react-select';
 import makeOptions from '../../makes.json';
 import { customStyles } from './customStyles';
-import { FilterContainer, ButtonSearch } from './Filter.styled';
+import {
+  FilterContainer,
+  ButtonSearch,
+  LabelFilter,
+} from './Filter.styled';
 
 const Filter = ({ setFilterBrand, setStopper }) => {
-  const [filterMake, setFilterMake] = useState('');
+  const [filterMake, setFilterMake] = useState({});
 
   const makeList = makeOptions.map(option => ({
     value: option,
@@ -23,6 +27,7 @@ const Filter = ({ setFilterBrand, setStopper }) => {
 
   return (
     <FilterContainer>
+      <LabelFilter>Car brand</LabelFilter>
       <Select
         styles={customStyles}
         value={filterMake}
