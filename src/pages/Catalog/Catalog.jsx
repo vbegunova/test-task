@@ -1,17 +1,19 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAdverts, fetchAllAdverts } from 'redux/operations';
+import { fetchAdverts } from 'redux/operations';
 import {
   selectAdverts,
   selectError,
   selectIsLoading,
   selectQuantity,
 } from 'redux/selectors';
-import { CatalogContainer, LoadMoreButton } from './Catalog.styled';
-import CatalogItem from 'components/CatalogItem/CatalogItem';
+import { LoadMoreButton } from './Catalog.styled';
 import Loader from 'components/Loader/Loader';
 import Modal from 'components/Modal/Modal';
 import ModalContent from 'components/ModalContent/ModalContent';
+import { clearAdverts } from 'redux/advertsSlice';
+import Filter from 'components/Filter/Filter';
+import CatalogList from 'components/CatalogList/CatalogList';
 
 const Catalog = () => {
   const adverts = useSelector(selectAdverts);
@@ -23,6 +25,7 @@ const Catalog = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [stopper, setStopper] = useState(true);
+  const [filterBrand, setFilterBrand] = useState('');
 
   useLayoutEffect(() => {
     if (page !== 1 && !stopper) {
@@ -34,12 +37,16 @@ const Catalog = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchAllAdverts());
-  }, [dispatch]);
+    if (filterBrand) {
+      setPage(1);
+      clearAdverts();
+    }
+    dispatch(fetchAdverts({ page, filterBrand }));
+  }, [dispatch, filterBrand, page]);
 
   useEffect(() => {
-    dispatch(fetchAdverts(page));
-  }, [dispatch, page]);
+    dispatch(clearAdverts());
+  }, [dispatch]);
 
   const handleClick = () => {
     setPage(prevPage => prevPage + 1);
@@ -50,34 +57,27 @@ const Catalog = () => {
     setStopper(true);
     setIsModalOpen(true);
     setSelectedItem(item);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setStopper(true);
     setIsModalOpen(false);
     setSelectedItem(null);
+    document.body.style.overflow = 'auto';
   };
 
   return (
     <>
-      <CatalogContainer>
-        {adverts.map(advert => {
-          return (
-            <CatalogItem
-              key={advert.id}
-              advert={advert}
-              openModal={openModal}
-            />
-          );
-        })}
-      </CatalogContainer>
+      <Filter setFilterBrand={setFilterBrand} setStopper={setStopper} />
+      {<CatalogList adverts={adverts} openModal={openModal} />}
       {isLoading && !error && <Loader />}
-      {!isLoading && quantity !== adverts.length && (
+      {!isLoading && quantity !== adverts.length && !filterBrand && (
         <LoadMoreButton onClick={handleClick}>Load more</LoadMoreButton>
       )}
       {isModalOpen && (
         <Modal onClose={closeModal}>
-          <ModalContent advert={selectedItem}/>
+          <ModalContent advert={selectedItem} />
         </Modal>
       )}
     </>

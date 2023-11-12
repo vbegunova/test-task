@@ -5,16 +5,6 @@ export const Container = styled.div`
   margin-right: auto;
 `;
 
-export const CatalogContainer = styled.ul`
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  gap: 29px;
-  flex-wrap: wrap;
-  list-style: none;
-`;
-
 export const LoadMoreButton = styled.button`
   display: block;
   margin-top: 100px;
