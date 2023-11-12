@@ -27,8 +27,7 @@ export const ButtonCross = styled.button`
   top: 16px;
   right: 16px;
   background-color: transparent;
-  width: 24px;
-  height: 24px;
+  border: none;
 
   &:hover {
     cursor: pointer;
