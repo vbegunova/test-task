@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import ModalContent from 'components/ModalContent/ModalContent';
 import CatalogList from 'components/CatalogList/CatalogList';
+import { NoFavorites, StyledLink } from './Favorites.styled';
+import { Link } from 'react-router-dom';
 
 const Favorites = () => {
   const favoriteAdverts = useSelector(selectFavoritesAdverts);
@@ -27,7 +29,10 @@ const Favorites = () => {
       {favoriteAdverts[0] ? (
         <CatalogList adverts={favoriteAdverts} openModal={openModal} />
       ) : (
-        <p>There are no favorites</p>
+        <NoFavorites>
+          Sorry, but there are no favorites. You can add favorite car in{' '}
+          <StyledLink to="/catalog">catalog</StyledLink>!
+        </NoFavorites>
       )}
       {isModalOpen && (
         <Modal onClose={closeModal}>
