@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchAdverts,
-  fetchAllAdverts,
-} from './operations';
+import { fetchAdverts, fetchAllAdverts } from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -11,11 +8,16 @@ const handlePending = state => {
 const handleFetchFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  state.items.push(...action.payload);
+  if (action.meta.arg.page === 1) {
+    state.items = action.payload;
+  } else {
+    state.items.push(...action.payload);
+  }
 };
 
 const handleAllFetchFulfilled = (state, action) => {
   state.quantity = action.payload.length;
+  state.bditems = action.payload;
 };
 
 const handleRejected = (state, action) => {
@@ -23,15 +25,39 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
+const loadFavoritesFromLS = () => {
+  const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  return savedFavorites;
+};
+
+const saveFavoritesToLS = favorites => {
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+};
+
 const advertsSlice = createSlice({
   name: 'adverts',
   initialState: {
+    bditems: [],
     items: [],
-    selectedItem: null,
     quantity: 0,
     isLoading: false,
-    isLoadingModal: false,
     error: null,
+    favorites: loadFavoritesFromLS(),
+  },
+  reducers: {
+    addFavorite(state, action) {
+      const advertId = action.payload;
+      state.favorites.push(advertId);
+      saveFavoritesToLS(state.favorites);
+    },
+    removeFavorite(state, action) {
+      const advertId = action.payload;
+      state.favorites = state.favorites.filter(id => id !== advertId);
+      saveFavoritesToLS(state.favorites);
+    },
+    clearAdverts(state) {
+      state.items = [];
+    },
   },
   extraReducers: builder =>
     builder
@@ -41,4 +67,10 @@ const advertsSlice = createSlice({
       .addCase(fetchAllAdverts.fulfilled, handleAllFetchFulfilled),
 });
 
+export const {
+  addFavorite,
+  removeFavorite,
+  clearAdverts,
+  clearFavoriteAdverts,
+} = advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;
