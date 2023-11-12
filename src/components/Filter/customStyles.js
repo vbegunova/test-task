@@ -28,6 +28,11 @@ export const customStyles = {
     fontSize: '16px',
     fontWeight: 500,
     lineHeight: 1.25,
+    transition: 'color 300ms cubic-bezier(0.075, 0.82, 0.165, 1)',
+
+    '&:hover': {
+      color: '#121417',
+    },
 
     '&:last-child': {
       marginBottom: '0',
