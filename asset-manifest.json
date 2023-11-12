@@ -1,23 +1,26 @@
 {
   "files": {
-    "main.css": "/test-task/static/css/main.7acaea2f.css",
-    "main.js": "/test-task/static/js/main.a383d79d.js",
+    "main.css": "/test-task/static/css/main.f2db3b31.css",
+    "main.js": "/test-task/static/js/main.9d33ab79.js",
     "static/js/923.3d473971.chunk.js": "/test-task/static/js/923.3d473971.chunk.js",
-    "static/js/137.a26d9098.chunk.js": "/test-task/static/js/137.a26d9098.chunk.js",
+    "static/js/137.e10130a4.chunk.js": "/test-task/static/js/137.e10130a4.chunk.js",
     "static/js/297.4e647180.chunk.js": "/test-task/static/js/297.4e647180.chunk.js",
     "static/js/525.b8eef233.chunk.js": "/test-task/static/js/525.b8eef233.chunk.js",
     "static/media/car-background.png": "/test-task/static/media/car-background.e53c6af39339bf529451.png",
+    "static/media/Manrope-Medium.woff2": "/test-task/static/media/Manrope-Medium.9cccfee0f8d3153ae547.woff2",
+    "static/media/Manrope-Regular.woff2": "/test-task/static/media/Manrope-Regular.cb78aabfaaf5d95c8665.woff2",
+    "static/media/Manrope-Semibold.woff2": "/test-task/static/media/Manrope-Semibold.0d44fe833dd4c7229544.woff2",
     "static/media/sprite.svg": "/test-task/static/media/sprite.0344fa304a92c5d4dabf7b4a8788577c.svg",
     "index.html": "/test-task/index.html",
-    "main.7acaea2f.css.map": "/test-task/static/css/main.7acaea2f.css.map",
-    "main.a383d79d.js.map": "/test-task/static/js/main.a383d79d.js.map",
+    "main.f2db3b31.css.map": "/test-task/static/css/main.f2db3b31.css.map",
+    "main.9d33ab79.js.map": "/test-task/static/js/main.9d33ab79.js.map",
     "923.3d473971.chunk.js.map": "/test-task/static/js/923.3d473971.chunk.js.map",
-    "137.a26d9098.chunk.js.map": "/test-task/static/js/137.a26d9098.chunk.js.map",
+    "137.e10130a4.chunk.js.map": "/test-task/static/js/137.e10130a4.chunk.js.map",
     "297.4e647180.chunk.js.map": "/test-task/static/js/297.4e647180.chunk.js.map",
     "525.b8eef233.chunk.js.map": "/test-task/static/js/525.b8eef233.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.a383d79d.js"
+    "static/css/main.f2db3b31.css",
+    "static/js/main.9d33ab79.js"
   ]
 }
